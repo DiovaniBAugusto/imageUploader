@@ -4,7 +4,6 @@ class GetImageController{
     async handle(req, res){
         const {id} = req.params;
         const imageFile = await new GetImageService().handle(id);
-        console.log(imageFile);
         res.send(imageFile);
     }
 }

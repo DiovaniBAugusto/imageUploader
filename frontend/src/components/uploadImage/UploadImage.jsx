@@ -1,16 +1,12 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { API } from '../../lib/api'
-
 
 function UploadImage() {
     const [imgPreview, setImgPreview] = useState(null);
     const [imgFile, setImgFile] = useState(null);
     const [imgLink, setImgLink] = useState(null);
     const [msgAlert, setMsgAlert] = useState("");
-    const nav = useNavigate();
-  
-  
+
     const handleImagePreview = (e) => {
       let image_as_base64 = URL.createObjectURL(e.target.files[0]);
       let image_as_files = e.target.files[0];
@@ -24,8 +20,7 @@ function UploadImage() {
     };
   
     const handleImageSave = async()=>{
-        await API.post("/image",{image: imgFile}).then((resp)=>{
-          console.log(resp.data._id);  
+        await API.post("/image",{image: imgFile}).then((resp)=>{  
           if(resp.data._id){
             setImgLink(`http://localhost:3000/image/${resp.data._id}`);
           }
@@ -71,8 +66,7 @@ function UploadImage() {
                   <button onClick={handleImageSave}>Salvar imagem</button>
                 )}
               </>
-            }
-            
+            }   
           </div>
         </div>
       </div>
